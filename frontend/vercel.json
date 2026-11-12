@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://drogueria-api.onrender.com/api/v1/health*" },
+    { "source": "/api/:path*", "destination": "https://drogueria-api.onrender.com/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://TU-SERVICIO.onrender.com/api/:path*" },
+    { "source": "/api/:path*", "destination": "https://drogueria-api.onrender.com/api/v1/health*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

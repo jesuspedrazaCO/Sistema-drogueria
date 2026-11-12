@@ -1,0 +1,73 @@
+@import '@fontsource-variable/inter';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens de diseño (valores RGB para que Tailwind pueda aplicar opacidad) */
+:root {
+  --canvas: 245 245 247; /* fondo general, gris Apple */
+  --surface: 255 255 255;
+  --ink: 29 29 31;
+  --ink-soft: 81 81 84;
+  --ink-mute: 110 110 115;
+
+  --brand-50: 234 247 250;
+  --brand-100: 211 238 244;
+  --brand-200: 168 220 232;
+  --brand-500: 21 150 176;
+  --brand-600: 11 122 144;
+  --brand-700: 10 99 118;
+
+  --ok: 27 127 75;
+  --ok-bg: 232 246 238;
+  --warn: 154 90 5;
+  --warn-bg: 255 243 224;
+  --bad: 196 40 32;
+  --bad-bg: 253 236 234;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-canvas font-sans text-[15px] leading-6 text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss03';
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    @apply tracking-title;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--brand-500));
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  ::selection {
+    background: rgb(var(--brand-200));
+  }
+  /* Los números siempre alineados en tablas y tarjetas */
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply fixed left-4 top-3 z-[100] -translate-y-20 rounded-full bg-ink px-4 py-2 text-sm font-medium text-white transition-transform focus:translate-y-0;
+  }
+  .glass {
+    @apply bg-surface/80 backdrop-blur-xl;
+  }
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}

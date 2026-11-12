@@ -1,0 +1,36 @@
+# Blueprint de Render para la API (plan gratuito). Crea el servicio desde
+# Render > New > Blueprint y elige este repositorio.
+services:
+  - type: web
+    name: drogueria-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "20"
+      # Se piden al crear el servicio (no se guardan en el repositorio)
+      - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      # Render los genera aleatorios y distintos entre sí
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      # Vercel (rewrite) -> Render = 2 proxies. Si el frontend llama directo a Render, usar 1.
+      - key: TRUST_PROXY_HOPS
+        value: "2"
+      - key: COOKIE_SAMESITE
+        value: lax
